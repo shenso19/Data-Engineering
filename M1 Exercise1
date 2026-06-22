@@ -224,13 +224,124 @@
       ]
     },
     {
+      "cell_type": "markdown",
+      "source": [
+        "Task.3"
+      ],
+      "metadata": {
+        "id": "xg1EqoduUiwA"
+      }
+    },
+    {
       "cell_type": "code",
-      "source": [],
+      "source": [
+        "import requests\n",
+        "data = requests.get(\"https://raw.githubusercontent.com/cosc-526/home.page/main/data.M.1.exercise.csv\")"
+      ],
+      "metadata": {
+        "id": "MaTNnhMUVNjc"
+      },
+      "execution_count": 109,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "keys = {'ä': 'ae', 'ö': 'oe', 'ü': 'ue', 'Ä': 'Ae', 'Ö': 'Oe', 'Ü': 'Ue', 'ß': 'ss'}"
+      ],
       "metadata": {
         "id": "mdsunejHLyxp"
       },
-      "execution_count": null,
+      "execution_count": 122,
       "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "print(data)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "uuEtntPmU89j",
+        "outputId": "3c1c0ea8-b71e-420a-f614-f9bfa9041e71"
+      },
+      "execution_count": 113,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "<Response [200]>\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "for name in df['name']:\n",
+        "  print(name)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "48_rDD4vWxBN",
+        "outputId": "b6f71a74-414d-4ea6-c8c2-197b5b00fbec"
+      },
+      "execution_count": 120,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Richard Phillips Feynman\n",
+            "Shin'ichirō Tomonaga\n",
+            "Julian Schwinger\n",
+            "Rudolf Ludwig Mössbauer\n",
+            "Erwin Schrödinger\n",
+            "Paul Dirac\n",
+            "Maria Skłodowska-Curie\n",
+            "Pierre Curie\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "54a4fed3",
+        "outputId": "baec624b-c722-4c90-ff31-d36c54a3d9da"
+      },
+      "source": [
+        "for name in df['name']:\n",
+        "    modified_name = \"\"\n",
+        "    for char in name:\n",
+        "        modified_name += keys.get(char, char)\n",
+        "    print(modified_name)"
+      ],
+      "execution_count": 125,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Richard Phillips Feynman\n",
+            "Shin'ichirō Tomonaga\n",
+            "Julian Schwinger\n",
+            "Rudolf Ludwig Moessbauer\n",
+            "Erwin Schroedinger\n",
+            "Paul Dirac\n",
+            "Maria Skłodowska-Curie\n",
+            "Pierre Curie\n"
+          ]
+        }
+      ]
     }
   ],
   "metadata": {
