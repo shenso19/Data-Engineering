@@ -11,15 +11,25 @@
       ]
     },
     {
+      "cell_type": "markdown",
+      "source": [
+        "Task.1"
+      ],
+      "metadata": {
+        "id": "065T4jlsDBza"
+      }
+    },
+    {
       "cell_type": "code",
       "source": [
         "import requests\n",
-        "mydata = requests.get(\"https://github.com/cosc-526/home.page/blob/main/data.M.1.exercise.csv\")"
+        "import io\n",
+        "mydata = requests.get(\"https://raw.githubusercontent.com/cosc-526/home.page/main/data.M.1.exercise.csv\")"
       ],
       "metadata": {
         "id": "q5GeDWgeB8pA"
       },
-      "execution_count": 33,
+      "execution_count": 95,
       "outputs": []
     },
     {
@@ -32,9 +42,9 @@
           "base_uri": "https://localhost:8080/"
         },
         "id": "IWzgYiKR_haB",
-        "outputId": "d6a78c86-ac66-4b83-dd32-f8ded68f4368"
+        "outputId": "2cc67048-d772-4ee2-9cdc-94fd381542ec"
       },
-      "execution_count": 34,
+      "execution_count": 96,
       "outputs": [
         {
           "output_type": "stream",
@@ -55,9 +65,9 @@
           "base_uri": "https://localhost:8080/"
         },
         "id": "p_hzs86wAYsj",
-        "outputId": "1e431798-c5f1-47bd-89a5-4b6b2d03471d"
+        "outputId": "d3868837-df36-4c09-a257-90d4f7b772ad"
       },
-      "execution_count": 35,
+      "execution_count": 97,
       "outputs": [
         {
           "output_type": "stream",
@@ -79,9 +89,9 @@
           "base_uri": "https://localhost:8080/"
         },
         "id": "pgjhBIZIAjgI",
-        "outputId": "0f621457-0eb9-4b4c-ecd1-4c14ec867737"
+        "outputId": "99543d91-4d34-40f2-beac-1603bc62f8a8"
       },
-      "execution_count": 36,
+      "execution_count": 98,
       "outputs": [
         {
           "output_type": "stream",
@@ -91,6 +101,136 @@
           ]
         }
       ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Task.2"
+      ],
+      "metadata": {
+        "id": "4RXb0QzLDJuf"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import requests\n",
+        "mydata = requests.get(\"https://raw.githubusercontent.com/cosc-526/home.page/main/data.M.1.exercise.tsv\")"
+      ],
+      "metadata": {
+        "id": "HVJj2T7NIoRO"
+      },
+      "execution_count": 103,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "print(mydata)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "bovZH9lDIzNm",
+        "outputId": "647ac1e9-c361-4340-f934-ee9e945c8604"
+      },
+      "execution_count": 104,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "<Response [200]>\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import pandas as pd\n",
+        "import io\n",
+        "\n",
+        "tsv_content = mydata.text\n",
+        "\n",
+        "df_tsv = pd.read_csv(io.StringIO(tsv_content), sep='\\t')\n",
+        "\n",
+        "print(f\"The TSV data has {len(df_tsv)} rows.\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "S6gZGch8EF70",
+        "outputId": "b09e5226-041e-4ead-c840-a968e19fe713"
+      },
+      "execution_count": 105,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "The TSV data has 8 rows.\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "print(f\"The TSV data has {len(df_tsv.columns)} columns.\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "Qn6PNbNoDedX",
+        "outputId": "7a6012bb-460f-40bd-bc09-6925cc96e13b"
+      },
+      "execution_count": 107,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "The TSV data has 3 columns.\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "a6459d0b",
+        "outputId": "509279be-78fa-4ebb-aa5b-626a6440c50a"
+      },
+      "source": [
+        "avg_age_tsv = df_tsv['age'].mean()\n",
+        "print(f\"The average age in df_tsv is: {avg_age_tsv}\")"
+      ],
+      "execution_count": 108,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "The average age in df_tsv is: 70.875\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "mdsunejHLyxp"
+      },
+      "execution_count": null,
+      "outputs": []
     }
   ],
   "metadata": {
